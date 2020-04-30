@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerMeleeAttack : MonoBehaviour
 {
     public int attackDamage = 1;
-
     float attackRate = 1f;
     float nextAttackTime = 0f;
 
@@ -15,7 +14,6 @@ public class PlayerMeleeAttack : MonoBehaviour
         {
             if (Time.time >= nextAttackTime && !ChimeraEnemy.ChimeraenemyInvincible)
             {
-                ;
                 collider.gameObject.GetComponentInParent<ChimeraEnemy>().TakeDamage(attackDamage);
                 nextAttackTime = Time.time + 1f / attackRate;
                 ChimeraEnemy.ChimerainvincibleTimer = 0.5f;
@@ -23,6 +21,18 @@ public class PlayerMeleeAttack : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+        else if (collider.gameObject.CompareTag("Enemy"))
+            {
+                if (Time.time >= nextAttackTime && !Enemy.enemyInvincible)
+                {
+                    collider.gameObject.GetComponentInParent<Enemy>().TakeDamage(attackDamage);
+                    nextAttackTime = Time.time + 1f / attackRate;
+                    Enemy.invincibleTimer = 0.5f;
+                    Enemy.enemyInvincible = true;
+                    Destroy(gameObject);
+                }
+            }
 
         else
         {

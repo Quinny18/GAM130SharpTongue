@@ -10,8 +10,8 @@ public class Enemy : MonoBehaviour
     private int maxHealth = 10;
     public int currentHealth;
 
-    public bool enemyInvincible;
-    public float invincibleTimer;
+    public static bool enemyInvincible;
+    public static float invincibleTimer;
 
     void Start()
     {
